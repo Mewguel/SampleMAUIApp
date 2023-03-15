@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             x:Class="SmplBarCodeReaderMAUI.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            x:Name="mainLayout"
+            Spacing="30"
+            Padding="25,0"
+            VerticalOptions="Center">
+
+            <Button
+                x:Name="QRButton"
+                Text="Show QR Scanner"
+                WidthRequest="200"
+                HeightRequest="75"
+                Margin="10"
+                Clicked="ShowQRScanner"
+            />
+            <VerticalStackLayout
+                x:Name="qrFields"
+                Spacing="25"
+                Padding="30,0"
+                Margin="5"
+                VerticalOptions="Center"
+                IsVisible="False">
+
+                <zxing:CameraBarcodeReaderView 
+                    x:Name="barcodeReader"
+                    WidthRequest="300"
+                    HeightRequest="300"
+                    Margin="10"
+                    IsDetecting="True" 
+                    IsTorchOn="False"
+                    BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected"/>
+
+                <Label
+                    x:Name="barcodeResult"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="32"
+                    HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout
+                x:Name="nfcFields"
+                Spacing="25"
+                Padding="30,0"
+                Margin="5"
+                VerticalOptions="Center"
+                IsVisible="True">
+
+                <Label
+                    x:Name="nfcInput"
+                    Text="NFC Input"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="24"
+                    HorizontalOptions="Center" 
+                />
+                
+                <Entry
+                    x:Name="nfcTextEntryField"
+                    TextColor="Black"
+                    BackgroundColor="White"
+                    WidthRequest="200"
+                 />
+
+                <Label
+                    x:Name="nfcData"
+                    Text="Data"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="18"
+                    Padding="10"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                />
+
+                <Button
+                    x:Name="NFCWriteButton"
+                    Text="Write To Tag"
+                    WidthRequest="200"
+                    HeightRequest="75"
+                    Padding="10"
+                    Margin="5"
+                    Clicked="WriteNFCTag"
+                />
+
+                <Button
+                    x:Name="NFCReadButton"
+                    Text="Read NFC Tag"
+                    WidthRequest="200"
+                    HeightRequest="75"
+                    Padding="10"
+                    Margin="5"
+                    Clicked="ReadNFCTag"
+                />
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
